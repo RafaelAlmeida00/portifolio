@@ -42,7 +42,6 @@ export default function Home() {
         fontFamily: "'Courier New', Courier, monospace",
       }}
     >
-
       {/* Header */}
       <header
         style={{
@@ -54,16 +53,39 @@ export default function Home() {
           backgroundColor: palette.background.medium,
           borderBottom: `2px solid ${palette.border.medium}`,
           position: "relative",
+          flexWrap: "wrap", // importante p/ mobile
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
-          <h1 style={{ color: palette.text.primary, fontSize: "2rem" }}>
+          <h1
+            style={{
+              color: palette.text.primary,
+              fontSize: "2rem",
+              whiteSpace: "nowrap",
+            }}
+          >
             Portfolio
           </h1>
         </div>
 
-        <div style={{ display: "flex", alignItems: "center", gap: "1.5rem", height: "100%" }}>
-          <span style={{ color: palette.text.secondary, fontSize: "1.2rem" }}>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "1rem",
+            height: "100%",
+            flexWrap: "wrap", // quebra em telas pequenas
+            justifyContent: "flex-end",
+          }}
+        >
+          <span
+            style={{
+              color: palette.text.secondary,
+              fontSize: "1rem",
+              minWidth: "80px",
+              textAlign: "center",
+            }}
+          >
             Page {pages[currentPage].page || currentPage + 1}
           </span>
           <motion.button
@@ -77,13 +99,16 @@ export default function Home() {
               backgroundColor: palette.accents.highlight,
               color: palette.text.primary,
               border: "none",
-              padding: "0.5rem 1rem",
+              padding: "0.5rem 0.8rem",
               borderRadius: "5px",
               cursor: "pointer",
               boxShadow: `0 4px 10px ${palette.border.dark}`,
+              fontSize: "0.9rem",
+              flex: "1 1 auto",
+              justifyContent: "center",
             }}
           >
-            <FaArrowLeft /> Prev Page
+            <FaArrowLeft /> Prev
           </motion.button>
           <motion.button
             whileHover={{ scale: 1.1 }}
@@ -96,15 +121,19 @@ export default function Home() {
               backgroundColor: palette.accents.button,
               color: "#fff",
               border: "none",
-              padding: "0.5rem 1rem",
+              padding: "0.5rem 0.8rem",
               borderRadius: "5px",
               cursor: "pointer",
               boxShadow: `0 4px 10px ${palette.border.dark}`,
+              fontSize: "0.9rem",
+              flex: "1 1 auto",
+              justifyContent: "center",
             }}
           >
-            <FaArrowRight /> Next Page
+            Next <FaArrowRight />
           </motion.button>
           <div
+            id="breadcrumb"
             style={{
               display: "flex",
               height: "100%",
@@ -114,11 +143,11 @@ export default function Home() {
           >
             <div
               style={{
-                transform: "scaleY(2)",
+                transform: "scaleY(1.5)",
                 transformOrigin: "center top",
               }}
             >
-              <FaBookmark color={palette.accents.icon} size={40} />
+              <FaBookmark color={palette.accents.icon} size={28} />
             </div>
           </div>
         </div>
@@ -127,10 +156,10 @@ export default function Home() {
       {/* Breadcrumb */}
       <motion.div
         style={{
-          padding: "0.5rem 2rem",
+          padding: "0.5rem 1rem",
           color: palette.accents.highlight,
           fontWeight: "bold",
-          fontSize: "1rem",
+          fontSize: "0.9rem",
           position: "relative",
           zIndex: 10,
         }}
@@ -144,26 +173,32 @@ export default function Home() {
           animate={{ x: 0, opacity: 1 }}
           exit={{ x: 20, opacity: 0 }}
           transition={{ type: "spring", stiffness: 120 }}
-          style={{ display: "flex", alignItems: "center", gap: "0.3rem", cursor: "default" }}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "0.3rem",
+            cursor: "default",
+          }}
         >
           <span style={{ color: palette.accents.highlight }}>{">"}</span>
-          <span style={{ color: palette.text.primary }}>{pages[currentPage].name.split(" ")[0]}</span>
+          <span style={{ color: palette.text.primary }}>
+            {pages[currentPage].name.split(" ")[0]}
+          </span>
         </motion.span>
       </motion.div>
 
       {/* Conteúdo */}
       <div
         style={{
-          height: "calc(85vh - 2rem)",
+          flex: 1,
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
           position: "relative",
           overflow: "hidden",
-          padding: "2rem",
+          padding: "1rem",
         }}
       >
-
         <AnimatePresence mode="wait">
           <motion.div
             key={currentPage}
@@ -177,13 +212,13 @@ export default function Home() {
               height: "100%",
               backgroundColor: palette.background.dark,
               borderRadius: "10px",
-              padding: "2rem",
+              padding: "1rem",
               boxShadow: `0 12px 30px rgba(0,0,0,0.25)`,
               color: palette.text.primary,
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
-              // Efeito de carta amassada
+              overflowY: "auto",
               backgroundImage: `
                 repeating-linear-gradient(
                   45deg,
@@ -204,12 +239,45 @@ export default function Home() {
               transform: "rotate(-0.3deg) skew(0.5deg, 0.5deg)",
             }}
           >
-r
             {pages[currentPage].component}
-
           </motion.div>
         </AnimatePresence>
       </div>
+
+      {/* Responsividade extra */}
+      <style jsx>{`
+        @media (max-width: 768px) {
+          header {
+            flex-direction: column;
+            height: auto !important;
+            padding: 1rem;
+            gap: 0.5rem;
+          }
+          header h1 {
+            font-size: 1.5rem !important;
+          }
+          header button {
+            width: 100%;
+          }
+          main {
+            font-size: 0.9rem;
+          }
+            #breadcrumb {
+            display: none; !important;
+        }
+
+        @media (max-width: 480px) {
+          header h1 {
+            font-size: 1.2rem !important;
+          }
+          span {
+            font-size: 0.8rem !important;
+          }
+            #breadcrumb {
+            display: none !important;
+        } 
+        }
+      `}</style>
     </main>
   );
 }
