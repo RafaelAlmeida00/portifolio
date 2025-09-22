@@ -45,6 +45,22 @@ export default function TimeLine() {
             className={`flex justify-center items-center w-screen bg-[${palette.background.light}]`}
             style={{ height: "calc(85vh - 2rem)" }}
         >
+            <div className="absolute top-4 left-4 z-30">
+                <div
+                    className="rounded-xl shadow-lg backdrop-blur-md px-4 py-1 max-w-md"
+                    style={{
+                        backgroundColor: "rgba(255, 255, 255, 0.8)", // semi-transparente
+                        border: `2px solid ${palette.border.medium}`,
+                        color: palette.text.primary,
+                    }}
+                >
+                    <p className="text-base font-bold">
+                        Hover over a images to see more detail
+                    </p>
+                </div>
+            </div>
+
+
             <div className="relative w-full h-full flex justify-center items-center">
                 {/* Linha ondulada */}
                 <svg
