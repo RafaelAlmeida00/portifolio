@@ -5,7 +5,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { FaBookmark, FaArrowRight, FaArrowLeft } from "react-icons/fa";
 import Introduce from "@/pages/Introduce";
 import { palette } from "@/utils/color";
-import ParticleFight from "@/componentes/ParticleFight";
 import TimeLine from "@/pages/TimeLine";
 import Education from "@/pages/Education";
 import SelfProjects from "@/pages/SelfProjects";

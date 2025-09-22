@@ -1,3 +1,4 @@
+import { BsTwitterX, BsWhatsapp } from "react-icons/bs";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 export const experience = [
@@ -178,6 +179,8 @@ export const links = [
     { name: "Linkedin", url: "https://www.linkedin.com/in/almeid00/", icon: FaLinkedin },
     { name: "Github", url: "https://github.com/RafaelAlmeida00/", icon: FaGithub },
     { name: "Github2", url: "https://github.com/RafaelAlmeid00/", icon: FaGithub },
+    { name: "WhatsApp", url: "https://api.whatsapp.com/send?phone=5524999980064&text=Hello%2C%20I%20saw%20your%20portfolio%20page.", icon: BsWhatsapp },
+     { name: "X / Twitter", url: "https://x.com/Rafaelnnovation", icon: BsTwitterX },
 ];
 
 export const skills = [
